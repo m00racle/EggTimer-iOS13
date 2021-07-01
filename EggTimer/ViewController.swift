@@ -11,5 +11,9 @@ import UIKit
 class ViewController: UIViewController {
     
 
-
+    @IBAction func hardnessSelected(_ sender: UIButton) {
+        let buttonTitle = sender.titleLabel?.text
+        print(buttonTitle ?? "nil")
+    }
+    
 }
