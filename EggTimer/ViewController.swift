@@ -24,6 +24,9 @@ class ViewController: UIViewController {
     var isTimerRun = false
 
     @IBAction func hardnessSelected(_ sender: UIButton) {
+//        prevent: each time I press the button the timer reset but the speed is getting faster!
+        timer.invalidate()
+        
         let buttonTitle = sender.titleLabel?.text ?? "nil"
         let msgTitle = "button title: "
         print(msgTitle + buttonTitle )
