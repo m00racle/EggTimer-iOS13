@@ -19,7 +19,7 @@ class ViewController: UIViewController {
                     "Hard":12*60]
     
 //    mske timer variables:
-    var seconds = 60
+    var seconds = 0
     var timer = Timer()
     var isTimerRun = false
 
@@ -32,6 +32,7 @@ class ViewController: UIViewController {
         let eggTime = eggTimes[buttonTitle]
         if (eggTime != nil) {
             print(eggTime!)
+            seconds = eggTime!
         }
 //        timer run
         runTimer()
@@ -42,8 +43,13 @@ class ViewController: UIViewController {
     }
     
     @objc func updateTimer() {
-        seconds -= 1
-        print(seconds)
+        if seconds < 1 {
+            timer.invalidate()
+        }
+        else {
+            seconds -= 1
+            print(seconds)
+        }
     }
     
 }
