@@ -9,12 +9,14 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let softTime = 5
-    let mediumTime = 8
-    let hardTime = 12
+//    let softTime = 5*60
+//    let mediumTime = 8*60
+//    let hardTime = 12*60
     
 //    make dictionary on eggTime:
-    let eggTimes = ["Soft":5, "Medium":8, "Hard":12]
+    let eggTimes = ["Soft":5*60,
+                    "Medium":8*60,
+                    "Hard":12*60]
 
     @IBAction func hardnessSelected(_ sender: UIButton) {
         let buttonTitle = sender.titleLabel?.text ?? "nil"
