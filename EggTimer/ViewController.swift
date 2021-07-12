@@ -17,6 +17,11 @@ class ViewController: UIViewController {
     let eggTimes = ["Soft":5*60,
                     "Medium":8*60,
                     "Hard":12*60]
+    
+//    mske timer variables:
+    var seconds = 60
+    var timer = Timer()
+    var isTimerRun = false
 
     @IBAction func hardnessSelected(_ sender: UIButton) {
         let buttonTitle = sender.titleLabel?.text ?? "nil"
@@ -28,6 +33,17 @@ class ViewController: UIViewController {
         if (eggTime != nil) {
             print(eggTime!)
         }
+//        timer run
+        runTimer()
+    }
+    
+    func runTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateTimer() {
+        seconds -= 1
+        print(seconds)
     }
     
 }
