@@ -14,15 +14,19 @@ class ViewController: UIViewController {
 //    let hardTime = 12*60
     
 //    make dictionary on eggTime:
-    let eggTimes = ["Soft":5*60,
-                    "Medium":8*60,
-                    "Hard":12*60]
+//    NOTE: THIS IS FOR THE LABEL TITLE CHANGE TO DONE
+//    TODO: TO MAKE IT BACK TO NORMAL JUST ADD * 60
+    let eggTimes = ["Soft":5,
+                    "Medium":8,
+                    "Hard":12]
     
 //    mske timer variables:
     var seconds = 0
     var timer = Timer()
     var isTimerRun = false
-
+    @IBOutlet weak var titleLabel: NSLayoutConstraint!
+    @IBOutlet weak var theLabel: UILabel!
+    
     @IBAction func hardnessSelected(_ sender: UIButton) {
 //        prevent: each time I press the button the timer reset but the speed is getting faster!
         timer.invalidate()
@@ -47,6 +51,7 @@ class ViewController: UIViewController {
     
     @objc func updateTimer() {
         if seconds < 1 {
+            self.theLabel.text = "Done!"
             timer.invalidate()
         }
         else {
