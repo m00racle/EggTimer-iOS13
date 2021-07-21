@@ -17,11 +17,9 @@ class ViewController: UIViewController {
 //    let hardTime = 12*60
     
 //    make dictionary on eggTime:
-//    NOTE: THIS IS FOR THE LABEL TITLE CHANGE TO DONE DEBUG
-//    TODO: TO MAKE IT BACK TO NORMAL JUST ADD * 60 DEBUG
-    let eggTimes = ["Soft":5,
-                    "Medium":8,
-                    "Hard":12]
+    let eggTimes = ["Soft":5*60,
+                    "Medium":8*60,
+                    "Hard":12*60]
     
 //    mske timer variables:
     var seconds = 0
@@ -41,24 +39,16 @@ class ViewController: UIViewController {
         
         let buttonTitle = sender.titleLabel?.text ?? "nil"
         
-//        debug purposes clean up afterwards!
-        let msgTitle = "button title: "
-        print(msgTitle + buttonTitle )
-        
 //        the label should point out the egg hardness selected
         theLabel.text = buttonTitle
         
 //        make the dictionary to put the value for title label
         let eggTime = eggTimes[buttonTitle]
-        if (eggTime != nil) {
-            
-//            if egg time is not nil then put it as startTime
-            startTime = eggTime!
-            
-        }
+        startTime = eggTime!
         
 //        make the progress bar turn to 0.0
         progressBar.progress = 0.0
+        
 //        timer run
         runTimer()
     }
@@ -83,8 +73,7 @@ class ViewController: UIViewController {
         }
         else {
             seconds += 1
-//            print the seconds DEBUG
-            print(seconds)
+//
 //            express the seconds into progress
 //            view it in the progressBar
 //            NOTE: YOU NEED TO CHANGE THE VARIABLES (startTime and seconds) TO FLOAT EACH NOT IN THE FINAL RESULT OF THE CALCULATIONS
