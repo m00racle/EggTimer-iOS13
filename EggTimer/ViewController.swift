@@ -8,6 +8,9 @@
 
 import UIKit
 
+//import AVFoundation to sound the alarm
+import AVFoundation
+
 class ViewController: UIViewController {
 //    let softTime = 5*60
 //    let mediumTime = 8*60
@@ -69,6 +72,9 @@ class ViewController: UIViewController {
 //            put the warning sign Done
             self.theLabel.text = "Done!"
             
+//            sound the alarm
+            soundAlarm()
+            
 //            set the seconds back to 0 this is not done automatically when invalidate the timer!
             seconds = 0
             
@@ -83,6 +89,25 @@ class ViewController: UIViewController {
 //            view it in the progressBar
 //            NOTE: YOU NEED TO CHANGE THE VARIABLES (startTime and seconds) TO FLOAT EACH NOT IN THE FINAL RESULT OF THE CALCULATIONS
             progressBar.progress = Float(seconds)/Float(startTime)
+        }
+    }
+    
+    var player:AVAudioPlayer? //set variable named player (type of AVAudioPlayer)
+    
+    func soundAlarm() {
+        guard let url = Bundle.main.url(forResource: "alarm_sound", withExtension: "mp3") else { return }
+
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            /* The following line is required for the player to work on iOS 11. Change the file type accordingly*/
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            /* iOS 10 and earlier require the following line:
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileTypeMPEGLayer3) */
+            guard let player = player else { return }
+            player.play()
+        } catch let error {
+            print(error.localizedDescription)
         }
     }
     
