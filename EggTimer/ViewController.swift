@@ -14,14 +14,15 @@ class ViewController: UIViewController {
 //    let hardTime = 12*60
     
 //    make dictionary on eggTime:
-//    NOTE: THIS IS FOR THE LABEL TITLE CHANGE TO DONE
-//    TODO: TO MAKE IT BACK TO NORMAL JUST ADD * 60
+//    NOTE: THIS IS FOR THE LABEL TITLE CHANGE TO DONE DEBUG
+//    TODO: TO MAKE IT BACK TO NORMAL JUST ADD * 60 DEBUG
     let eggTimes = ["Soft":5,
                     "Medium":8,
                     "Hard":12]
     
 //    mske timer variables:
     var seconds = 0
+    var startTime = 0
     var timer = Timer()
     var isTimerRun = false
     @IBOutlet weak var titleLabel: NSLayoutConstraint!
@@ -43,8 +44,13 @@ class ViewController: UIViewController {
         let eggTime = eggTimes[buttonTitle]
         if (eggTime != nil) {
             print(eggTime!)
+//            add another variable that ensure eggTime is not nil as starting point for progress
+            startTime = eggTime!
             seconds = eggTime!
         }
+        
+//        make the progress bar turn to 0.0
+        progressBar.progress = 0.0
 //        timer run
         runTimer()
     }
@@ -60,12 +66,12 @@ class ViewController: UIViewController {
         }
         else {
             seconds -= 1
-//            print the seconds
+//            print the seconds DEBUG
             print(seconds)
 //            express the seconds into progress
 //            view it in the progressBar
-//            this is the test to change the progressBar progress attribute:
-            progressBar.progress = 1
+//            NOTE: YOU NEED TO CHANGE THE VARIABLES (startTime and seconds) TO FLOAT EACH NOT IN THE FINAL RESULT OF THE CALCULATIONS
+            progressBar.progress = (Float(startTime) - Float(seconds))/Float(startTime)
         }
     }
     
