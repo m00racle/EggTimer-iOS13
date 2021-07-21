@@ -37,16 +37,21 @@ class ViewController: UIViewController {
         timer.invalidate()
         
         let buttonTitle = sender.titleLabel?.text ?? "nil"
+        
+//        debug purposes clean up afterwards!
         let msgTitle = "button title: "
         print(msgTitle + buttonTitle )
+        
+//        the label should point out the egg hardness selected
+        theLabel.text = buttonTitle
         
 //        make the dictionary to put the value for title label
         let eggTime = eggTimes[buttonTitle]
         if (eggTime != nil) {
-            print(eggTime!)
-//            add another variable that ensure eggTime is not nil as starting point for progress
+            
+//            if egg time is not nil then put it as startTime
             startTime = eggTime!
-            seconds = eggTime!
+            
         }
         
 //        make the progress bar turn to 0.0
@@ -60,18 +65,24 @@ class ViewController: UIViewController {
     }
     
     @objc func updateTimer() {
-        if seconds < 1 {
+        if seconds >= startTime {
+//            put the warning sign Done
             self.theLabel.text = "Done!"
+            
+//            set the seconds back to 0 this is not done automatically when invalidate the timer!
+            seconds = 0
+            
+//            invalidate the timer!
             timer.invalidate()
         }
         else {
-            seconds -= 1
+            seconds += 1
 //            print the seconds DEBUG
             print(seconds)
 //            express the seconds into progress
 //            view it in the progressBar
 //            NOTE: YOU NEED TO CHANGE THE VARIABLES (startTime and seconds) TO FLOAT EACH NOT IN THE FINAL RESULT OF THE CALCULATIONS
-            progressBar.progress = (Float(startTime) - Float(seconds))/Float(startTime)
+            progressBar.progress = Float(seconds)/Float(startTime)
         }
     }
     
