@@ -25,6 +25,10 @@ class ViewController: UIViewController {
     var timer = Timer()
     var isTimerRun = false
     @IBOutlet weak var titleLabel: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var progressBar: UIProgressView!
+    
     @IBOutlet weak var theLabel: UILabel!
     
     @IBAction func hardnessSelected(_ sender: UIButton) {
@@ -56,7 +60,12 @@ class ViewController: UIViewController {
         }
         else {
             seconds -= 1
+//            print the seconds
             print(seconds)
+//            express the seconds into progress
+//            view it in the progressBar
+//            this is the test to change the progressBar progress attribute:
+            progressBar.progress = 1
         }
     }
     
